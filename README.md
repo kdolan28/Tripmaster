@@ -1,13 +1,41 @@
 # Tripmaster
-# User Story
-As a User I want to be able to search for hotels and flights for a specific destination for my upcoming trips
-I want to view detailed information about a hotel so that i can make a informed decision before booking
-I want to search for flights between two locations on specific dates so that I can plan my travel itinerary.
 
-# Acceptance Criteria
-Given I will be able to enter the destination, check-in date, check-out date, and number of guests.
-The search results should display relevant hotels with prices and amenities.
-Given I will be able to click on a hotel from the search results to view its details.
-The hotel details page should include photos, description, amenities, room types, and guest reviews
-Given I will be able to enter the departure city, destination city, departure date, return date, and number of passengers.
-The search results should display available flights with airlines, departure/arrival times, and prices.
+## Overview
+Tripmaster is your ultimate travel companion, designed to simplify the process of planning your trips. With Tripmaster, you can effortlessly search for hotels and flights, ensuring you have all the information you need to make informed decisions about your travel arrangements.
+
+## User Story
+- **Hotel Search**: As a user, I want to search for hotels at my destination for specific dates and guest numbers, so I can find the best accommodation for my needs.
+- **Hotel Details**: I want to view detailed information about hotels, including photos, amenities, and reviews, to make an informed booking decision.
+- **Flight Search**: I want to search for flights between two locations on specific dates, allowing me to plan my travel itinerary efficiently.
+
+## Acceptance Criteria
+- **Hotel Search Results**: Upon entering a destination, check-in and check-out dates, and the number of guests, the system should display relevant hotels, showcasing prices and amenities.
+- **Hotel Details View**: When selecting a hotel from the search results, I should be presented with a detailed page that includes photos, a description, amenities, room types, and guest reviews.
+- **Flight Search Results**: By entering the departure and destination cities, along with departure and return dates and the number of passengers, the system should display available flights, including airlines, departure/arrival times, and prices.
+
+## Features
+- **Comprehensive Search**: Utilize powerful search capabilities to find hotels and flights that match your specific criteria.
+- **Detailed Information**: Access in-depth details about hotels and flights to make choices that best suit your preferences and budget.
+- **User-Friendly Interface**: Enjoy a seamless and intuitive user experience designed to make travel planning as straightforward as possible.
+
+## Installation
+To get started with Tripmaster, follow these simple steps:
+
+1. Clone the repository to your local machine: `git clone https://github.com/yourusername/tripmaster.git`
+
+2. Navigate to the project directory: `cd tripmaster`
+
+3. Install the required dependencies: `npm install`
+
+4. Start the application: `npm start`
+
+5. Open your web browser and visit `http://localhost:3000` to start planning your trip with Tripmaster.
+
+## Contributing
+
+
+
+## License
+Tripmaster is released under the [MIT License](LICENSE). Feel free to use it within your own projects.
+
+Thank you for choosing Tripmaster for your travel planning needs!
