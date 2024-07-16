@@ -38,5 +38,3 @@ function displayFlightResults(data) {
         flightResultsDiv.appendChild(flightElement);
     });
 }
-
-
