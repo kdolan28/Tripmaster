@@ -3,14 +3,14 @@ require('dotenv').config(); // For loading environment variables from a .env fil
 
 // Fetch hotels function
 function fetchHotels(city) {
-    const API_KEY = process.env.PRICE_API_KEY; // Load API key from environment variables
+    const API_KEY = process.env.RAPIDAPI_KEY;; // Load API key from environment variables
     const options = {
         method: 'GET',
-        hostname: 'priceline-com.p.rapidapi.com',
+        hostname: 'booking-com.p.rapidapi.com',
         path: `/hotels/city/search?q=${encodeURIComponent(city)}`,
         headers: {
             'x-rapidapi-key': API_KEY,
-            'x-rapidapi-host': 'priceline-com.p.rapidapi.com'
+            'x-rapidapi-host': API_BASE_URL,
         }
     };
 

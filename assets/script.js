@@ -1,19 +1,22 @@
-// Function to handle the search action on the main page
-function search() {
+// Function to handle the search
+async function search() {
     const destination = document.getElementById('destinationInput').value;
     const checkInDate = document.getElementById('checkInDateInput').value;
     const checkOutDate = document.getElementById('checkOutDateInput').value;
     const guests = document.getElementById('guestsInput').value;
 
+    // Construct the URL parameters
     const params = new URLSearchParams({
         destination: destination,
-        checkIn: checkInDate,
-        checkOut: checkOutDate,
+        checkInDate: checkInDate,
+        checkOutDate: checkOutDate,
         guests: guests
     });
 
+    // Redirect to results.html with encoded parameters
     window.location.href = 'results.html?' + params.toString();
 }
+
 
 // Function to get search parameters from the URL and display results on the results page
 async function getSearchParameters() {

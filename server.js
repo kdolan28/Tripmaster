@@ -1,36 +1,40 @@
-// Load environment variables from .env file
-require('dotenv').config();
+import express from 'express';
+import fetch from 'node-fetch';
+import dotenv from 'dotenv';
 
-// Import necessary modules
-const fetch = require('node-fetch');
-const express = require('express');
+dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+const API_BASE_URL = 'booking-com.p.rapidapi.com';
+const API_KEY = process.env.RAPIDAPI_KEY;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
 
 // Endpoint to fetch hotels by city
 app.get('/api/hotels', async (req, res) => {
     const { city } = req.query;
-    const API_KEY = process.env.PRICE_API_KEY;
-    const API_HOST = 'priceline-com.p.rapidapi.com';
-
     if (!city) {
         return res.status(400).json({ error: 'City parameter is required' });
     }
 
-    const url = `https://${API_HOST}/hotels/city/search?q=${encodeURIComponent(city)}`;
+    const url = `https://${API_BASE_URL}/v2/hotels/search?order_by=popularity&filter_by_currency=AED&include_adjacency=true&children_number=2&categories_filter_ids=class%3A%3A2%2Cclass%3A%3A4%2Cfree_cancellation%3A%3A1&room_number=1&dest_type=city&adults_number=2&page_number=0&units=metric&checkout_date=2024-09-15&checkin_date=2024-09-14&locale=en-gb&children_ages=5%2C0&dest_id=${city}`;
+
     const options = {
         method: 'GET',
         headers: {
             'x-rapidapi-key': API_KEY,
-            'x-rapidapi-host': API_HOST
+            'x-rapidapi-host': API_BASE_URL
         }
     };
 
     try {
         const response = await fetch(url, options);
         if (!response.ok) {
-            throw new Error('Failed to fetch hotels');
+            throw new Error(`Failed to fetch hotels: ${response.status} - ${await response.text()}`);
         }
+
         const data = await response.json();
         res.json(data);
     } catch (error) {
