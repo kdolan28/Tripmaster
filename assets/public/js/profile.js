@@ -64,6 +64,7 @@ async function fetchHotelData(destination, checkInDate, checkOutDate, guests) {
         const response = await fetch(`/api/hotels?cityCode=${destination}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${guests}`);
         const data = await response.json();
 
+<<<<<<< HEAD:assets/script.js
         let resultsHTML = '';
         data.data.forEach(item => {
             resultsHTML += `<div class="result-item"><h4>${item.hotel.name}</h4><p>${item.offers[0].price.total} ${item.offers[0].price.currency}</p></div>`;
@@ -103,3 +104,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+=======
+    data.data.forEach(flight => {
+        const flightElement = document.createElement('div');
+        flightElement.classList.add('flight-item');
+        flightElement.innerHTML = `
+            <div><strong>Airline:</strong> ${flight.itineraries[0].segments[0].carrierCode}</div>
+            <div><strong>Departure:</strong> ${flight.itineraries[0].segments[0].departure.at}</div>
+            <div><strong>Arrival:</strong> ${flight.itineraries[0].segments[0].arrival.at}</div>
+            <div><strong>Price:</strong> ${flight.offerItems[0].price.total} ${flight.offerItems[0].price.currency}</div>
+        `;
+        flightResultsDiv.appendChild(flightElement);
+    });
+}
+>>>>>>> main:assets/public/js/profile.js

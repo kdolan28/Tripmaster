@@ -124,6 +124,26 @@ footer a {
     text-decoration: none;
 }
 
+<<<<<<< HEAD:assets/style.css
 footer a:hover {
     text-decoration: underline;
 }
+=======
+.results-list {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.results-list h3 {
+    margin-bottom: 10px;
+}
+
+.results-list .result-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+}
+>>>>>>> main:assets/public/css/style.css
