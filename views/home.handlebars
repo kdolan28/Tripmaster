@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD:views/home.handlebars
     <title>Travel Booking Platform</title>
     <link rel="stylesheet" href="/css/style.css">
+=======
+    <title>Travel Master</title>
+    <link rel="stylesheet" href="assets/style.css">
+
+>>>>>>> 5ab9f16cda27b01f55019819e9c7ace20be88913:index.html
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">TravelMaster</div>
+        <div class="logo">Travel Master</div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Destinations</a></li>
                 <li><a href="#">Hotels</a></li>
                 <li><a href="#">Flights</a></li>
-                <li><a href="#">Sign In</a></li>
+                <li><a href="#">Sign In/Sign Up</a></li>
             </ul>
         </nav>
     </header>
@@ -24,11 +30,11 @@
     <!-- Home Page -->
     <main>
         <section class="search-bar">
-            <input type="text" placeholder="Enter destination">
-            <input type="date">
-            <input type="date">
-            <input type="number" placeholder="Guests">
-            <button>Search</button>
+            <input type="text" id="destinationInput" placeholder="Enter destination">
+            <input type="date" id="checkInDateInput">
+            <input type="date" id="checkOutDateInput">
+            <input type="number" id="guestsInput" placeholder="Guests">
+            <button onclick="search()">Search</button>
         </section>
         
         <section class="featured-destinations">
@@ -36,6 +42,13 @@
             <div class="destination">Destination 1</div>
             <div class="destination">Destination 2</div>
             <div class="destination">Destination 3</div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results">
+            <div id="destinationResults" class="results-list"></div>
+            <div id="hotelResults" class="results-list"></div>
+            <div id="flightResults" class="results-list"></div>
         </section>
     </main>
 
@@ -45,5 +58,9 @@
         <div>About Us</div>
         <div>Social Media Links</div>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/script.js"></script>
+    
 </body>
 </html>
