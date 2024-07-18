@@ -1,6 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import { engine } from 'express-handlebars';
 
 dotenv.config();
 
@@ -11,6 +12,21 @@ const API_KEY = process.env.RAPIDAPI_KEY;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(express.static('public'));
+
+// Setup Handlebars Engine and Views
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
+
+// Routes
+app.get('/', (req, res) => {
+    res.render('home', { title: 'Home' });
+});
+
+app.get('/login', (req, res) => {
+    res.render('login_register');
+});
 
 // Endpoint to fetch hotels by city
 app.get('/api/hotels', async (req, res) => {
@@ -43,32 +59,23 @@ app.get('/api/hotels', async (req, res) => {
     }
 });
 
+// Route to render search results page
+app.get('/search-results', (req, res) => {
+    const { destination, checkIn, checkOut, guests } = req.query;
+
+    
+    const hotelResults = [
+        { name: 'Hotel 1', description: 'Description for Hotel 1' },
+        { name: 'Hotel 2', description: 'Description for Hotel 2' }
+    ];
+
+    res.render('search-results', {
+        destinationResults: `Results for ${destination}`,
+        hotelResults,
+    });
+});
+
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-const express = require('express');
-const { engine } =  require('express-handlebars');
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(express.static('public'));
-
-//Setup Handlebars Engine and Views
-app.engine('handlebars', engine());
-app.set('view engine', 'handlebars');
-app.set('views', './views');
-
-// Routes
-app.get('/', (req, res) => {
-    res.render('home', { title: 'Home' });
-});
-
-app.get('/login', function(req, res) {
-    res.render('login_register');
-});
-
-// Start Server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
