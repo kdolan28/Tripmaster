@@ -1,10 +1,10 @@
-/* General styles */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
@@ -15,61 +15,52 @@ header {
 }
 
 header .logo {
-    font-size: 24px;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
-nav ul {
-    list-style-type: none;
+header nav ul {
+    list-style: none;
     padding: 0;
 }
 
-nav ul li {
+header nav ul li {
     display: inline;
-    margin-right: 10px;
+    margin: 0 10px;
 }
 
-nav ul li a {
+header nav ul li a {
     color: #fff;
     text-decoration: none;
-    padding: 5px 10px;
+    font-size: 1em;
 }
 
-nav ul li a:hover {
-    background-color: #555;
-    border-radius: 4px;
+header nav ul li a:hover {
+    text-decoration: underline;
 }
 
+/* Main Content */
 main {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
 }
 
-.search-bar input[type="text"],
-.search-bar input[type="date"],
-.search-bar input[type="number"] {
-    width: 200px;
-    padding: 8px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.search-bar input, .search-bar button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 1em;
 }
 
 .search-bar button {
-    padding: 10px 20px;
     background-color: #333;
     color: #fff;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -77,32 +68,67 @@ main {
     background-color: #555;
 }
 
+/* Featured Destinations */
 .featured-destinations {
-    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.featured-destinations h2 {
+    margin-top: 0;
 }
 
 .featured-destinations .destination {
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
     padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 4px;
+    margin: 10px 0;
+    border-radius: 5px;
 }
+
+/* Results Section */
+.search-results {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-category {
+    margin-bottom: 20px;
+}
+
+.result-category h3 {
+    margin-top: 0;
+}
+
+.results-list {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Footer */
 footer {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
     text-align: center;
-    margin-top: auto; /* Push footer to the bottom of the page */
 }
 
 footer div {
-    margin: 5px;
+    margin: 5px 0;
 }
 
-.results {
-    margin-top: 20px;
+footer a {
+    color: #fff;
+    text-decoration: none;
 }
 
+<<<<<<< HEAD:assets/style.css
+footer a:hover {
+    text-decoration: underline;
+}
+=======
 .results-list {
     margin-bottom: 20px;
     padding: 10px;
@@ -120,3 +146,4 @@ footer div {
     border-radius: 4px;
     background-color: #e0e0e0;
 }
+>>>>>>> main:assets/public/css/style.css

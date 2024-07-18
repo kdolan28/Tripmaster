@@ -1,25 +1,50 @@
-// server.js
+const https = require('https');
+require('dotenv').config(); // For loading environment variables from a .env file
 
-require('dotenv').config();
-const express = require('express');
-const fetch = require('node-fetch');
-const app = express();
-const port = 3000;
+// Fetch hotels function
+function fetchHotels(city) {
+    const API_KEY = process.env.RAPIDAPI_KEY;; // Load API key from environment variables
+    const options = {
+        method: 'GET',
+        hostname: 'booking-com.p.rapidapi.com',
+        path: `/hotels/city/search?q=${encodeURIComponent(city)}`,
+        headers: {
+            'x-rapidapi-key': API_KEY,
+            'x-rapidapi-host': API_BASE_URL,
+        }
+    };
 
-const apiKey = process.env.AMADEUS_API_KEY;
-const apiUrl = 'https://test.api.amadeus.com/v1/shopping/flight-offers';
+    return new Promise((resolve, reject) => {
+        const req = https.request(options, (res) => {
+            let data = '';
 
-app.get('/api/flights', async (req, res) => {
-  try {
-    const response = await fetch(`${apiUrl}?origin=NYC&destination=LON&apikey=${apiKey}`);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+            // A chunk of data has been received
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+            // The whole response has been received
+            res.on('end', () => {
+                resolve(JSON.parse(data));
+            });
+        });
+
+        // Handle request errors
+        req.on('error', (error) => {
+            reject(error);
+        });
+
+        // End the request
+        req.end();
+    });
+}
+
+// Example usage
+const city = 'Seattle';
+fetchHotels(city)
+    .then((data) => {
+        console.log('Hotel data for', city, ':', data);
+    })
+    .catch((error) => {
+        console.error('Error fetching hotel data:', error);
+    });
