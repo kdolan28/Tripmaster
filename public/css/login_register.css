@@ -1,3 +1,13 @@
+img {
+    width: 100px;
+    height: auto;
+    margin:  0 auto;
+}
+
+.login-form { 
+    display: none;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
