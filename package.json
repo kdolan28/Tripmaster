@@ -1,10 +1,11 @@
 {
   "name": "tripmaster",
   "version": "1.0.0",
-  "description": "## Overview Tripmaster is your ultimate travel companion, designed to simplify the process of planning your trips. With Tripmaster, you can effortlessly search for hotels and flights, ensuring you have all the information you need to make informed decisions about your travel arrangements.",
+  "description": "Tripmaster is your ultimate travel companion, designed to simplify the process of planning your trips. With Tripmaster, you can effortlessly search for hotels and flights, ensuring you have all the information you need to make informed decisions about your travel arrangements.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,9 @@
     "passport-local": "^1.0.0",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.3"
-  }
+    "sequelize": "^6.37.3",
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module"
 }
+
