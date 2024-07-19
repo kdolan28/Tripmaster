@@ -50,7 +50,13 @@
     </footer>
 
     <!-- JavaScript -->
+
     <script src="/public/assets/script.js"></script>
+   
+    {{#if logged_in}}
+    <script src="/public/js/logout.js"></script>
+    {{/if}}
+
     
 </body>
 </html>

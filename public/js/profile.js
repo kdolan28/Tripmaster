@@ -64,47 +64,6 @@ async function fetchHotelData(destination, checkInDate, checkOutDate, guests) {
         const response = await fetch(`/api/hotels?cityCode=${destination}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${guests}`);
         const data = await response.json();
 
-<<<<<<< HEAD:assets/script.js
-        let resultsHTML = '';
-        data.data.forEach(item => {
-            resultsHTML += `<div class="result-item"><h4>${item.hotel.name}</h4><p>${item.offers[0].price.total} ${item.offers[0].price.currency}</p></div>`;
-        });
-
-        document.getElementById('hotelResults').innerHTML += resultsHTML;
-    } catch (error) {
-        console.error('Error fetching hotel data:', error);
-        document.getElementById('hotelResults').innerHTML += '<p>Error fetching hotel data.</p>';
-    }
-}
-
-// Fetch flight data from the server
-async function fetchFlightData(destination) {
-    try {
-        const response = await fetch(`/api/flights?origin=SYD&destination=${destination}`);
-        const data = await response.json();
-
-        let resultsHTML = '';
-        data.data.forEach(item => {
-            resultsHTML += `<div class="result-item"><h4>${item.itineraries[0].segments[0].carrierCode}</h4><p>${item.price.total} ${item.price.currency}</p></div>`;
-        });
-
-        document.getElementById('flightResults').innerHTML += resultsHTML;
-    } catch (error) {
-        console.error('Error fetching flight data:', error);
-        document.getElementById('flightResults').innerHTML += '<p>Error fetching flight data.</p>';
-    }
-}
-
-// Event listener to call the getSearchParameters function when the results page loads
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('destinationResults')) {
-        getSearchParameters();
-    }
-});
-
-
-
-=======
     data.data.forEach(flight => {
         const flightElement = document.createElement('div');
         flightElement.classList.add('flight-item');
@@ -116,5 +75,4 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         flightResultsDiv.appendChild(flightElement);
     });
-}
->>>>>>> main:assets/public/js/profile.js
+}};
