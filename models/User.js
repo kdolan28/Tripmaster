@@ -1,16 +1,23 @@
-// Import important parts of sequelize library
+/*/ Import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
 // Import bcrypt for password hashing
 const bcrypt = require('bcrypt');
 // Import database connection from config.js
-const sequelize = require('../config/connections');
+const sequelize = require('../config/connections');*/
+
+// Import important parts of sequelize library
+import { Model, DataTypes } from 'sequelize';
+// Import bcrypt for password hashing
+import { compareSync, hash } from 'bcrypt';
+// Import database connection from config.js
+import sequelize from '../config/connections.js';
 
 // Create User model
 class User extends Model {
   // Method to check the password on login
   checkPassword(loginPw) {
     // Compare the provided password with the hashed password stored in the database
-    return bcrypt.compareSync(loginPw, this.password);
+    return compareSync(loginPw, this.password);
   }
 }
 
@@ -66,12 +73,12 @@ User.init(
     hooks: {
       // Before a new user is created, hash the password
       beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        newUserData.password = await hash(newUserData.password, 10);
         return newUserData;
       },
       // Before an existing user is updated, hash the password
       beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        updatedUserData.password = await hash(updatedUserData.password, 10);
         return updatedUserData;
       },
     },
@@ -89,4 +96,5 @@ User.init(
 );
 
 // Export the User model
-module.exports = User;
+/*module.exports = User;*/
+export default User;
