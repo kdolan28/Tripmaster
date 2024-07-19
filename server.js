@@ -30,14 +30,6 @@ app.get('/', (req, res) => {
     res.render('home', { title: 'Home' });
 });
 
-app.get('/search-results', (req, res) => {
-    const { destination, checkIn, checkOut, guests } = req.query;
-
-    res.render('search-results', {
-        destinationResults: `Results for ${destination}`,
-    });
-});
-
 // Endpoint to fetch destination ID by city name
 app.get('/api/destination', async (req, res) => {
     const { city } = req.query;
@@ -96,7 +88,7 @@ app.get('/api/hotels', async (req, res) => {
         const destinationId = destData.destinationId;
 
         // Fetch hotels using destination ID
-        const url = `https://${API_BASE_URL}/v2/hotels/search?children_number=${guests}&locale=en-gb&children_ages=5%2C0&filter_by_currency=AED&checkin_date=${checkInDate}&categories_filter_ids=class%3A%3A2%2Cclass%3A%3A4%2Cfree_cancellation%3A%3A1&dest_type=city&dest_id=${destinationId}&adults_number=2&checkout_date=${checkOutDate}&order_by=popularity&include_adjacency=true&room_number=1&page_number=0&units=metric`;
+        const url = `https://${API_BASE_URL}/v1/hotels/search?locale=en-gb&filter_by_currency=AED&checkin_date=${checkInDate}&categories_filter_ids=class%3A%3A2%2Cclass%3A%3A4%2Cfree_cancellation%3A%3A1&dest_type=city&dest_id=${destinationId}&adults_number=${guests}&checkout_date=${checkOutDate}&order_by=popularity&include_adjacency=true&room_number=1&page_number=0&units=metric`;
 
         const options = {
             method: 'GET',

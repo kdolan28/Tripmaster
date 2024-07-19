@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Master - Search Results</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
     <script src="/public/js/results.js"></script>
     <script src="/public/assets/script.js"></script>
 
@@ -34,10 +34,7 @@
                 <h3>Hotels</h3>
                 <div id="hotelResults" class="results-list"></div>
             </div>
-            <div class="result-category">
-                <h3>Flights</h3>
-                <div id="flightResults" class="results-list"></div>
-            </div>
+           
         </section>
     </main>
 
@@ -48,21 +45,6 @@
         <div>Social Media Links</div>
     </footer>
 
-    <!-- JavaScript -->
-
-        // Function to get search parameters and display results
-        function getSearchParameters() {
-            const params = new URLSearchParams(window.location.search);
-            const destination = params.get('destination');
-            const checkInDate = params.get('checkIn');
-            const checkOutDate = params.get('checkOut');
-            const guests = params.get('guests');
-            // Implement your search logic here, and update the DOM with results
-            document.getElementById('destinationResults').innerHTML = `Results for ${destination}`;
-            // Add logic to fetch and display hotel and flight results
-        }
-
-        document.addEventListener('DOMContentLoaded', getSearchParameters);
-    </script>
+    
 </body>
 </html>
