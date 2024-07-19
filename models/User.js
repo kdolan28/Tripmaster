@@ -1,12 +1,15 @@
 // Import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
+// Import bcrypt for password hashing
 const bcrypt = require('bcrypt');
 // Import database connection from config.js
-const sequelize = require('../config/connection');
+const sequelize = require('../config/connections');
 
 // Create User model
 class User extends Model {
+  // Method to check the password on login
   checkPassword(loginPw) {
+    // Compare the provided password with the hashed password stored in the database
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
@@ -33,7 +36,7 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      // Prevents duplicate email addresses in DB
+      // Prevents duplicate email addresses in database
       unique: true,
       // Checks for email format (foo@bar.com)
       validate: {
@@ -61,10 +64,12 @@ User.init(
   {
     // Hooks are used so that if a user is created or updated, the password is encrypted before being stored in the database.
     hooks: {
+      // Before a new user is created, hash the password
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
+      // Before an existing user is updated, hash the password
       beforeUpdate: async (updatedUserData) => {
         updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;
@@ -72,13 +77,16 @@ User.init(
     },
     // Pass in our imported sequelize connection (the direct connection to our database)
     sequelize,
+    // Don't add timestamp attributes (updatedAt, createdAt)
     timestamps: false,
     // Don't pluralize name of database table
     freezeTableName: true,
+    // Use snake_case (spaces replaced with underscores) for column names instead of camelCase
     underscored: true,
     // Define model name
     modelName: 'user',
   }
 );
 
+// Export the User model
 module.exports = User;
