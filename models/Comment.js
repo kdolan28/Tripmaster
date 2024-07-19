@@ -1,7 +1,12 @@
-// Import important parts of sequelize library
+/*// Import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
 // Import database connection from config.js
-const sequelize = require('../../config/connections');
+const sequelize = require('../config/connections');*/
+
+// Import important parts of sequelize library
+import { Model, DataTypes } from 'sequelize';
+// Import database connection from config.js
+import sequelize from '../config/connections.js';
 
 // Create Comment model
 class Comment extends Model {}
@@ -58,4 +63,5 @@ Comment.init(
 );
 
 // Export the Comment model
-module.exports = Comment;
+/*module.exports = Comment;*/
+export default Comment;

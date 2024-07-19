@@ -1,19 +1,19 @@
 // Master seed file to populate the database with some content when it's run
 
-/*import sequelize from '../config/connection.js';
+import sequelize from '../config/connections.js';
 import { User, Comment } from '../models/index.js';
 
 import userData from './userData.json' assert { type: 'json' };
-import commentData from './commentData.json' assert { type: 'json' };*/
+import commentData from './commentData.json' assert { type: 'json' };
 
-// Import database connection from config.js
+/*// Import database connection from config.js
 const sequelize = require('../config/connections');
 // Import models
 const { User, Comment } = require('../models');
 
 // Import seed data for users and comments
 const userData = require('./userData.json');
-const commentData = require('./commentData.json');
+const commentData = require('./commentData.json');*/
 
 // Function to seed the database
 const seedDatabase = async () => {
