@@ -26,10 +26,7 @@
             <input type="date" id="checkInDateInput">
             <input type="date" id="checkOutDateInput">
             <input type="number" id="guestsInput" placeholder="Guests">
-            <button type="button" onclick="search()">Search</button>
-
-            
-
+            <button type="button" id="searchButton">Search</button>
         </section>
         
         <section class="featured-destinations">
@@ -38,8 +35,14 @@
             <div class="destination">Destination 2</div>
             <div class="destination">Destination 3</div>
         </section>
-
         
+        <section class="search-results" id="searchResults" style="display:none;">
+            <h2>Search Results</h2>
+            <div class="result-category">
+                <h3>Hotels</h3>
+                <div id="hotelResults" class="results-list"></div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -50,13 +53,70 @@
     </footer>
 
     <!-- JavaScript -->
+    <script>
+/// Function to handle the search
+async function search() {
+    const destination = document.getElementById('destinationInput').value;
+    const checkInDate = document.getElementById('checkInDateInput').value;
+    const checkOutDate = document.getElementById('checkOutDateInput').value;
+    const guests = document.getElementById('guestsInput').value;
 
-    <script src="/public/assets/script.js"></script>
+    // Validate input
+    if (!destination || !checkInDate || !checkOutDate || !guests) {
+        alert('Please fill in all fields');
+        return;
+    }
 
+    try {
+        const response = await fetch(`/api/hotels?city=${destination}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch hotel data: ${response.status} - ${await response.text()}`);
+        }
+        const data = await response.json();
+
+        // Log the entire response to understand its structure
+        console.log('API Response:', JSON.stringify(data, null, 2));
+
+        let resultsHTML = '';
+        if (data.result && Array.isArray(data.result)) {
+            data.result.forEach(item => {
+                // Construct the URL using hotel name and other details if URL is not provided
+                let hotelUrl = item.url;
+                if (!hotelUrl) {
+                    const hotelNameSlug = item.hotel_name_trans.toLowerCase().replace(/\s+/g, '-');
+                    hotelUrl = `https://www.booking.com/hotel/us/${hotelNameSlug}.html`;
+                }
+
+                resultsHTML += `
+                    <div class="result-item">
+                        <h4><a href="${hotelUrl}" target="_blank">${item.hotel_name_trans}</a></h4>
+                        <img src="${item.main_photo_url}" alt="${item.hotel_name_trans}" />
+                        <p>Price: ${item.currency_code} ${item.min_total_price}</p>
+                        <p>Review Score: ${item.review_score} (${item.review_score_word})</p>
+                    </div>`;
+            });
+        } else {
+            resultsHTML = '<p>No hotel data found.</p>';
+        }
+
+        document.getElementById('hotelResults').innerHTML = resultsHTML;
+        document.getElementById('searchResults').style.display = 'block';
+    } catch (error) {
+        console.error('Error fetching hotel data:', error);
+        document.getElementById('hotelResults').innerHTML = '<p>Error fetching hotel data.</p>';
+    }
+}
+
+// Ensure the search function is available when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.querySelector('button[type="button"]');
+    if (searchButton) {
+        searchButton.addEventListener('click', search);
+    }
+});
+    </script>
     {{#if logged_in}}
     <script src="/public/js/logout.js"></script>
     {{/if}}
-
-    
 </body>
 </html>

@@ -73,6 +73,30 @@ main {
     text-align: center;
 }
 
+/* Search Results */
+.search-results {
+    display: none;
+    margin-top: 2rem;
+}
+
+.search-results .results-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.search-results .result-item {
+    flex: 1 1 calc(33.333% - 1rem);
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+}
+
+.search-results .result-item img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Footer */
 footer {
     background: #333;
@@ -86,4 +110,33 @@ footer {
 
 footer div {
     margin-bottom: 0.5rem;
+}
+/* Add this CSS to your existing stylesheet */
+
+/* Container for the search results */
+.search-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Each result item */
+.result-item {
+    flex: 1 1 calc(33.333% - 1rem); /* Three columns with a gap */
+    border: 1px solid #ddd;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.result-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.result-item h4 {
+    margin-top: 0;
+}
+
+.result-item p {
+    margin: 0.5rem 0;
 }
