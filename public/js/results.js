@@ -16,9 +16,6 @@ async function getSearchParameters() {
 
     // Fetch and display hotel information
     await fetchHotelData(destination, checkInDate, checkOutDate, guests);
-
-    // Fetch and display flight information
-    await fetchFlightData(destination);
 }
 
 // Fetch hotel data from the server
@@ -39,27 +36,6 @@ async function fetchHotelData(destination, checkInDate, checkOutDate, guests) {
     } catch (error) {
         console.error('Error fetching hotel data:', error);
         document.getElementById('hotelResults').innerHTML += '<p>Error fetching hotel data.</p>';
-    }
-}
-
-// Fetch flight data from the server
-async function fetchFlightData(destination) {
-    try {
-        const response = await fetch(`/api/flights?origin=SYD&destination=${destination}`);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch flight data: ${response.status} - ${await response.text()}`);
-        }
-        const data = await response.json();
-
-        let resultsHTML = '';
-        data.data.forEach(item => {
-            resultsHTML += `<div class="result-item"><h4>${item.itineraries[0].segments[0].carrierCode}</h4><p>${item.price.total} ${item.price.currency}</p></div>`;
-        });
-
-        document.getElementById('flightResults').innerHTML += resultsHTML;
-    } catch (error) {
-        console.error('Error fetching flight data:', error);
-        document.getElementById('flightResults').innerHTML += '<p>Error fetching flight data.</p>';
     }
 }
 
