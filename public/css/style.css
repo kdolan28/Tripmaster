@@ -61,16 +61,33 @@ main {
     cursor: pointer;
 }
 
+/* Featured Destinations */
 .featured-destinations {
-    display: flex;
-    justify-content: space-around;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.featured-destinations h2 {
+    margin-bottom: 20px;
 }
 
 .featured-destinations .destination {
-    border: 1px solid #ddd;
-    padding: 1rem;
-    width: 30%;
+    display: inline-block;
+    margin: 10px;
     text-align: center;
+    width: 30%;
+}
+
+.featured-destinations .destination img {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive adjustments for featured destinations */
+@media (max-width: 768px) {
+    .featured-destinations .destination {
+        width: 100%;
+    }
 }
 
 /* Search Results */
@@ -86,15 +103,24 @@ main {
 }
 
 .search-results .result-item {
-    flex: 1 1 calc(33.333% - 1rem);
+    flex: 1 1 calc(33.333% - 1rem); /* Three columns with a gap */
     border: 1px solid #ddd;
     padding: 1rem;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .search-results .result-item img {
     max-width: 100%;
     height: auto;
+}
+
+.search-results .result-item h4 {
+    margin-top: 0;
+}
+
+.search-results .result-item p {
+    margin: 0.5rem 0;
 }
 
 /* Footer */
@@ -110,33 +136,4 @@ footer {
 
 footer div {
     margin-bottom: 0.5rem;
-}
-/* Add this CSS to your existing stylesheet */
-
-/* Container for the search results */
-.search-results {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-/* Each result item */
-.result-item {
-    flex: 1 1 calc(33.333% - 1rem); /* Three columns with a gap */
-    border: 1px solid #ddd;
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-.result-item img {
-    max-width: 100%;
-    height: auto;
-}
-
-.result-item h4 {
-    margin-top: 0;
-}
-
-.result-item p {
-    margin: 0.5rem 0;
 }
