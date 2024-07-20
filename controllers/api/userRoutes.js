@@ -1,15 +1,58 @@
+// const router = require('express').Router();
+
+// const apiKey = process.env.AMADEUS_API_KEY;
+// const apiUrl = 'https://test.api.amadeus.com/v1/shopping/flight-offers';
+
+// app.get('/api/flights', async (req, res) => {
+//   try {
+//     const response = await fetch(`${apiUrl}?origin=NYC&destination=LON&apikey=${apiKey}`);
+//     const data = await response.json();
+//     res.json(data);
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
 const router = require('express').Router();
+const { User } = require('../../models');
 
-const apiKey = process.env.AMADEUS_API_KEY;
-const apiUrl = 'https://test.api.amadeus.com/v1/shopping/flight-offers';
-
-app.get('/api/flights', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const response = await fetch(`${apiUrl}?origin=NYC&destination=LON&apikey=${apiKey}`);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    if (!userData) {
+      res.status(400).json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
+    });
+
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
+
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
+module.exports = router;
