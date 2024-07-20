@@ -2,7 +2,7 @@
   "name": "tripmaster",
   "version": "1.0.0",
   "description": "Tripmaster is your ultimate travel companion, designed to simplify the process of planning your trips. With Tripmaster, you can effortlessly search for hotels and flights, ensuring you have all the information you need to make informed decisions about your travel arrangements.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
