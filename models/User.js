@@ -9,7 +9,7 @@ const sequelize = require('../config/connections');*/
 import { Model, DataTypes } from 'sequelize';
 // Import bcrypt for password hashing
 import { compareSync, hash } from 'bcrypt';
-// Import database connection from config.js
+// Import Sequelize database connection instance
 import sequelize from '../config/connections.js';
 
 // Create User model
@@ -26,45 +26,36 @@ User.init(
   {
     // Define columns
     id: {
-      // Use the special Sequelize DataTypes object to provide what type of data it is (Integer)
-      type: DataTypes.INTEGER,
-      // Doesn't allow null values
-      allowNull: false,
-      // Instruct that this is the Primary Key
-      primaryKey: true, 
-      // Turn on auto increment
-      autoIncrement: true,
+      type: DataTypes.INTEGER, // Integer data type for the id
+      allowNull: false, // This field cannot be null
+      primaryKey: true,  // This field is the primary key
+      autoIncrement: true, // This field auto-increments
     },
     name: {
-      // Use the special Sequelize DataTypes object to provide what type of data it is (String)
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING, // String data type for the name
+      allowNull: false, // This field cannot be null
     },
     email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      // Prevents duplicate email addresses in database
-      unique: true,
-      // Checks for email format (foo@bar.com)
+      type: DataTypes.STRING, // String data type for the email
+      allowNull: false, // This field cannot be null
+      unique: true, // This field must be unique (prevents duplicate usernames in database)
       validate: {
-        isEmail: true,
+        isEmail: true, // Validate that the email is in the email format (foo@bar.com)
       },
     },
     username: {
-      type: DataTypes.STRING,
-      // Prevents null values
-      allowNull: false,
-      // Will only allow alphanumeric characters
+      type: DataTypes.STRING, // String data type for the username
+      allowNull: false, // This field cannot be null
+      unique: true, // This field must be unique (prevents duplicate usernames in database)
       validate: {
-        isAlphanumeric: true,
+        isAlphanumeric: true, // Validate that the username only has alphanumeric characters
       },
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      // Must be longer than 8 characters
+      type: DataTypes.STRING, // String data type for the password
+      allowNull: false, // This field cannot be null
       validate: {
-        len: [8],
+        len: [8], // Validate that the password is at least 8 characters long
       },
     },
   },
@@ -82,19 +73,15 @@ User.init(
         return updatedUserData;
       },
     },
-    // Pass in our imported sequelize connection (the direct connection to our database)
-    sequelize,
-    // Don't add timestamp attributes (updatedAt, createdAt)
-    timestamps: false,
-    // Don't pluralize name of database table
-    freezeTableName: true,
-    // Use snake_case (spaces replaced with underscores) for column names instead of camelCase
-    underscored: true,
-    // Define model name
-    modelName: 'user',
+    // Define model options
+    sequelize, // Pass the sequelize instance
+    timestamps: false, // Disable automatic createdAt and updatedAt fields
+    freezeTableName: true, // Prevent Sequelize from pluralizing table names
+    underscored: true, // Use snake_case for column names
+    modelName: 'user', // Define the model name
   }
 );
 
-// Export the User model
+// Export the User model for use in other parts of the application
 /*module.exports = User;*/
 export default User;
