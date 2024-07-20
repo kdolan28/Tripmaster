@@ -1,11 +1,6 @@
 /*// Import important parts of sequelize library
-const { Model, DataTypes } = require('sequelize');
-// Import database connection from config.js
-const sequelize = require('../config/connections');*/
-
-// Import important parts of sequelize library
 import { Model, DataTypes } from 'sequelize';
-// Import database connection from config.js
+// Import the Sequelize connection instance
 import sequelize from '../config/connections.js';
 
 // Create Comment model
@@ -16,52 +11,38 @@ Comment.init(
   // Define columns
   {
     id: {
-      // Use the special Sequelize DataTypes object to provide what type of data it is (Integer)
-      type: DataTypes.INTEGER,
-      // Doesn't allow null values
-      allowNull: false,
-      // Instruct that this is the Primary Key
-      primaryKey: true,
-      // Turn on auto increment
-      autoIncrement: true,
+      type: DataTypes.INTEGER, // Integer data type for the id
+      allowNull: false, // This field cannot be null
+      primaryKey: true, // This field is the primary key
+      autoIncrement: true, // This field auto-increments
     },
     content: {
-      // Use the special Sequelize DataTypes object to provide what type of data it is (String)
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.TEXT, // Text data type for the content (longer text)
+      allowNull: false, // This field cannot be null
     },
     date_created: {
-      // Use the special Sequelize DataTypes object to provide what type of data it is (Date)
-      type: DataTypes.DATE,
-      allowNull: false,
-      // Set default value to current date and time
-      defaultValue: DataTypes.NOW,
+      type: DataTypes.DATE, // Date data type for the creation date
+      allowNull: false, // This field cannot be null
+      defaultValue: DataTypes.NOW, // Default value is the current date and time
     },
     user_id: {
-      type: DataTypes.INTEGER,
-      // Reference the User model
+      type: DataTypes.INTEGER, // Integer data type for the user_id
       references: {
-        // Model to reference
-        model: 'user',
-        // Key in the referenced model
-        key: 'id'
+        model: 'user', // Reference to the 'user' model
+        key: 'id' // Foreign key refers to the 'id' field of the 'user' model
       },
     },
   },
   {
-    // Pass in our imported sequelize connection (the direct connection to our database)
-    sequelize,
-    // Don't add timestamp attributes (updatedAt, createdAt)
-    timestamps: false,
-    // Don't pluralize name of database table
-    freezeTableName: true,
-    // Use snake_case (spaces replaced with underscores) for column names instead of camelCase
-    underscored: true,
-    // Define model name
-    modelName: 'comment',
+    // Define model options
+    sequelize, // Pass the sequelize instance
+    timestamps: false, // Disable automatic createdAt and updatedAt fields
+    freezeTableName: true, // Prevent Sequelize from pluralizing table names
+    underscored: true, // Use snake_case for column names
+
+    modelName: 'comment', // Define the model name
   }
 );
 
-// Export the Comment model
-/*module.exports = Comment;*/
-export default Comment;
+// Export the Comment model for use in other parts of the application
+export default Comment*/

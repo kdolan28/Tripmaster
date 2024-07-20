@@ -1,4 +1,4 @@
-import User from './User.js';
+/*import User from './User.js';
 import Comment from './Comment.js';
 
 // Creates a relationship between User and Comment model, with the User having a "has many" relationship with Comment model.
@@ -12,4 +12,4 @@ Comment.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-export { User, Comment };
+export { User, Comment };*/
