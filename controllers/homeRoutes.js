@@ -4,14 +4,14 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    const projectData = await Project.findAll({
+    const userData = await User.findAll({
       include: [{ model: User, attributes: ['name'] }],
     });
 
-    const projects = projectData.map((project) => project.get({ plain: true }));
+    const users = userData.map((user) => user.get({ plain: true }));
 
     res.render('home', { 
-      projects, 
+      users, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -19,16 +19,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+router.get('/user/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const userData = await User.findByPk(req.params.id, {
       include: [{ model: User, attributes: ['name'] }],
     });
 
-    const project = projectData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
-    res.render('project', {
-      ...project,
+    res.render('user', {
+      ...user,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -40,7 +40,7 @@ router.get('/results', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: User }],
     });
 
     const user = userData.get({ plain: true });
