@@ -10,9 +10,9 @@ router.get('/', async (req, res) => {
 
     const users = userData.map((user) => user.get({ plain: true }));
 
-    res.render('home', { 
-      users, 
-      logged_in: req.session.logged_in 
+    res.render('home', {
+      users,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -29,7 +29,7 @@ router.get('/user/:id', async (req, res) => {
 
     res.render('user', {
       ...user,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -47,7 +47,7 @@ router.get('/results', withAuth, async (req, res) => {
 
     res.render('results', {
       ...user,
-      logged_in: true
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,17 +55,12 @@ router.get('/results', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  /*if (req.session.logged_in) {
+  if (req.session.logged_in) {
     res.redirect('/results');
     return;
   }
 
-  res.render('login_register');*/
-  res.json(
-  {
-    message: 'test'
-  }
-  )
+  res.render('login_register');
 });
 
 module.exports = router;
