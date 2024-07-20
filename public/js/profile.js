@@ -56,7 +56,7 @@ async function fetchDestinationData(destination) {
         console.error('Error fetching destination data:', error);
         document.getElementById('destinationResults').innerHTML += '<p>Error fetching destination data.</p>';
     }
-}
+};
 
 // Fetch hotel data from the server
 async function fetchHotelData(destination, checkInDate, checkOutDate, guests) {
@@ -75,4 +75,8 @@ async function fetchHotelData(destination, checkInDate, checkOutDate, guests) {
         `;
         flightResultsDiv.appendChild(flightElement);
     });
-}};
+} catch (error) {
+    console.error('Error fetching hotel data:', error);
+    document.getElementById('destinationResults').innerHTML += '<p>Error fetching hotel data.</p>';
+}
+};
