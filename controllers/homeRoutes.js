@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comment, User } = require('../models');
+const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -55,12 +55,17 @@ router.get('/results', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
+  /*if (req.session.logged_in) {
     res.redirect('/results');
     return;
   }
 
-  res.render('login');
+  res.render('login_register');*/
+  res.json(
+  {
+    message: 'test'
+  }
+  )
 });
 
 module.exports = router;
