@@ -57,6 +57,7 @@ main {
 .search-bar input, .search-bar button {
     padding: 0.5rem;
     margin-right: 0.5rem;
+    border-radius: 5px;
 }
 
 .search-bar button {
@@ -68,29 +69,44 @@ main {
 
 /* Featured Destinations */
 .featured-destinations {
+  text-align: center;
+  display: inline-flex;
+  flex-direction: column;
     text-align: center;
     margin: 0 auto;
+   
 }
 
+
 .featured-destinations h2 {
+    font-size: 30px;
     margin-bottom: 20px;
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    
 }
 
 .featured-destinations .destination {
-    display: inline-block;
     margin: 10px;
+    border: #072736;
     text-align: center;
-    width: 30%;
 }
 
 .featured-destinations .destination img {
-    width: 100%;
+    display: block;
+    background-color: white ;
+   max-width: 100%;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: auto;
 }
 
+
+
 /* Responsive adjustments for featured destinations */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .featured-destinations .destination {
+        flex-direction: column;
         width: 100%;
     }
 }
