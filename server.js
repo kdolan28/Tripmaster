@@ -31,8 +31,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'Login/Register' });
+    res.render('login', { title: 'Login' });
 });
+
 
 // Endpoint to fetch destination ID by city name
 app.get('/api/destination', async (req, res) => {
