@@ -6,38 +6,36 @@ const loginFormHandler = async (event) => {
   const password = document.querySelector('#password-login').value.trim();
 
   if (email && password) {
-    try{
-    // Send a POST request to the API endpoint
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+    try {
+      // Send a POST request to the API endpoint
+      const response = await fetch('/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-      if (!response.ok) {}
+      if (!response.ok) {
+      }
       switch (response.status) {
         case 400:
         case 401:
           alert('Invalid email or password');
           break;
-          case 404:
-            alert('User not found. Please sign up.');
+        case 404:
+          alert('User not found. Please sign up.');
         default:
           alert('Failed to log in');
           break;
       }
-      
-      if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      document.location.replace('/');
-    }
-    }
-   catch (error) {
-    console.error('Error logging in:', error);
-    alert('Error logging in');
-  
-  }
 
+      if (response.ok) {
+        // If successful, redirect the browser to the profile page
+        document.location.replace('/');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert('Error logging in');
+    }
   } else {
     alert('Please enter email and password');
   }
@@ -70,6 +68,4 @@ const signup = async (event) => {
   }
 };
 
-document
-  .querySelector('.register-form')
-  .addEventListener('submit', signupFormHandler);
+document.querySelector('.register-form').addEventListener('submit', signup);
