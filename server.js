@@ -118,6 +118,19 @@ app.get('/api/hotels', async (req, res) => {
     }
 });
 
+async function authenticate(username, password) {
+    // Authentication logic here
+    // If username and password are correct, return true
+    return true;
+
+}
+
+app.post('/login', (req, res) => {
+    // Login logic here
+    // If login is successful
+    res.redirect('/profile');
+  });
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
