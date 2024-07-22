@@ -60,7 +60,7 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('login_register');
+  res.render('login');
 });
 
 module.exports = router;
