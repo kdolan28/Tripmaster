@@ -65,6 +65,14 @@ main {
     padding: 2rem;
 }
 
+a {
+    color: white;
+}
+
+a:hover {
+    color: #b5b0b0; /* Change this to any color you prefer for hover state */
+}
+
 .search-bar {
     display: flex;
     justify-content: space-between;
