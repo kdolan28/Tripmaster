@@ -73,6 +73,9 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
+
+ 
 }
 
 .featured-destinations h2 {

@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 const API_BASE_URL = 'booking-com.p.rapidapi.com';
 const API_KEY = process.env.RAPIDAPI_KEY;
 
+
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -117,19 +118,33 @@ app.get('/api/hotels', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error', message: error.message });
     }
 });
+import bcrypt from 'bcrypt';
+import User from './models/User.js';
+app.post('/api/signup', async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        if (!username || !email || !password) {
+            return res.status(400).json({ error: 'Username, email, and password are required' });
+        }
 
-async function authenticate(username, password) {
-    // Authentication logic here
-    // If username and password are correct, return true
-    return true;
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-}
+        // Create a new user
+        const newUser = await User.create({
+            username,
+            email,
+            password: hashedPassword,
+        });
 
-app.post('/login', (req, res) => {
-    // Login logic here
-    // If login is successful
-    res.redirect('/profile');
-  });
+        // Respond with the created user (excluding the password)
+        res.status(201).json({ user: { id: newUser._id, username: newUser.username, email: newUser.email } });
+    } catch (error) {
+        console.error('Signup error:', error);
+        res.status(500).json({ error: 'Internal Server Error', message: error.message });
+    }
+});
+
 
 // Start the server
 app.listen(PORT, () => {
