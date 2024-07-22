@@ -125,12 +125,6 @@ async function authenticate(username, password) {
 
 }
 
-app.post('/login', (req, res) => {
-    // Login logic here
-    // If login is successful
-    res.redirect('/profile');
-  });
-
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
