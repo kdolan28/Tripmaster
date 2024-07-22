@@ -14,7 +14,8 @@ Thank you for choosing Tripmaster for your travel planning needs!
 
 ## User Story
 
-- **Hotel Search**: As a user, I want to search for hotels at my destination for specific dates and guest numbers, so that I can find the best accommodation for my needs. -** Hotel Details**: As a user, I want to view detailed information about hotels, including photos, amenities, and reviews, so that I may make an informed booking decision.
+- **Hotel Search**: As a user, I want to search for hotels at my destination for specific dates and guest numbers, so that I can find the best accommodation for my needs.
+- **Hotel Details**: As a user, I want to view detailed information about hotels, including photos, amenities, and reviews, so that I may make an informed booking decision.
 - **Secure Login/Registration**: As a user, I want a secure way to sign-up and log in to my account so that my information is protected.
 
 ## Acceptance Criteria

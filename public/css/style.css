@@ -6,6 +6,7 @@
 }
 
 body {
+    background-color: #E1E1E1;
     font-family: Arial, sans-serif;
     line-height: 1.6;
 }
@@ -13,7 +14,7 @@ body {
 /* Header */
 header {
     font-size: 100px;
-    background: #24323D;
+    background: black;
     color: #fff;
     padding: 1rem;
     display: flex;
@@ -33,19 +34,21 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #E1E1E1;
     text-decoration: none;
     font-size: large;
     cursor: pointer;
     border-radius: 5px;
     width: 75px;
-    background-color: #9BB1BB;
+    color: black;
+    background-color: #E1E1E1;
     box-shadow: #072736;
 }
 
 /* Main Section */
 main {
     padding: 2rem;
+    background-color: #E1E1E1;
 }
 
 .search-bar {
