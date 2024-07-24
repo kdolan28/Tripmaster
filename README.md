@@ -110,7 +110,7 @@ The following screenshot demonstrates the application's functionality and appear
 
 GitHub Repository: https://github.com/kdolan28/Tripmaster
 
-Deployed link to Render: https://tripmaster-josa.onrender.com
+Deployed link to Render: https://tripmaster-w7ep.onrender.com
 
 ## Contributing
 
